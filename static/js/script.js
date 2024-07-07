@@ -1,4 +1,6 @@
-window.parseISOString = function parseISOString(s) {
-  var b = s.split(/\D+/);
-  return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
-};
+function parseISOString(isoString) {
+  const dateParts = isoString.split(/\D+/).map(Number);
+  const [year, month, day, hour, minute, second, millisecond] = dateParts;
+
+  return new Date(Date.UTC(year, month - 1, day, hour, minute, second, millisecond));
+}
