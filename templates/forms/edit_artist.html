@@ -26,8 +26,14 @@
       <div class="form-group">
         <label for="genres">Genres</label>
         <small>Ctrl+Click to select multiple</small>
-        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', autofocus = true) }}
-      </div>
+        <select name="genres" id="genres" class="form-control" multiple required>
+          <option value="Rock" {% if 'Rock' in artist.genres.split(',') %}selected{% endif %}>Rock</option>
+          <option value="Jazz" {% if 'Jazz' in artist.genres.split(',') %}selected{% endif %}>Jazz</option>
+          <option value="Pop" {% if 'Pop' in artist.genres.split(',') %}selected{% endif %}>Pop</option>
+          <option value="Classical" {% if 'Classical' in artist.genres.split(',') %}selected{% endif %}>Classical</option>
+          <option value="Country" {% if 'Country' in artist.genres.split(',') %}selected{% endif %}>Country</option>
+          <option value="Soul" {% if 'Soul' in artist.genres.split(',') %}selected{% endif %}>Soul</option>
+        </select>      </div>
       <div class="form-group">
           <label for="facebook_link">Facebook Link</label>
           {{ form.facebook_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
@@ -45,13 +51,14 @@
 
       <div class="form-group">
           <label for="seeking_venue">Looking for Venues</label>
-          {{ form.seeking_venue(placeholder='Venue', autofocus = true) }}
-      </div>
+          <input type="checkbox" name="seeking_venue" id="seeking_venue" 
+          {% if artist.lookingforVenue %}checked{% endif %}>      </div>
 
       <div class="form-group">
           <label for="seeking_description">Seeking Description</label>
-          {{ form.seeking_description(class_ = 'form-control', autofocus = true) }}
-      </div>
+          <input type="text" name="seeking_description" id="seeking_description" 
+          value="{{ artist.seek if artist.seek else '' }}" 
+          >       </div>
       
       <input type="submit" value="Edit Artist" class="btn btn-primary btn-lg btn-block">
     </form>

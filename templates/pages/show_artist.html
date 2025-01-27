@@ -26,16 +26,15 @@
 		<p>
 			<i class="fab fa-facebook-f"></i> {% if artist.facebook_link %}<a href="{{ artist.facebook_link }}" target="_blank">{{ artist.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
         </p>
-		{% if artist.seeking_venue %}
-		<div class="seeking">
-			<p class="lead">Currently seeking performance venues</p>
+		{% if artist.lookingforVenue %}		<div class="seeking">
+			<p>Currently seeking performance venues</p>
 			<div class="description">
-				<i class="fas fa-quote-left"></i> {{ artist.seeking_description }} <i class="fas fa-quote-right"></i>
+				<i class="fas fa-quote-left"></i> {{ artist.seek}} <i class="fas fa-quote-right"></i>
 			</div>
 		</div>
 		{% else %}	
 		<p class="not-seeking">
-			<i class="fas fa-moon"></i> Not currently seeking performance venues
+			<i class="fas fa-moon"></i> Not currently seeking talent
 		</p>
 		{% endif %}
 	</div>
@@ -43,6 +42,7 @@
 		<img src="{{ artist.image_link }}" alt="Venue Image" />
 	</div>
 </div>
+
 <section>
 	<h2 class="monospace">{{ artist.upcoming_shows_count }} Upcoming {% if artist.upcoming_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
 	<div class="row">
